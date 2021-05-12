@@ -18,7 +18,7 @@ def dump_to_yaml(uuid_for_yaml, data_to_dump):
         if not os.path.exists(path):
             os.makedirs(path)
         path = os.path.join(path, 'cr.yaml')
-        if not os.path.exists(path):
+        if os.path.exists(path):
             with open(path, 'w+') as outfile:
                 yaml.dump(data_to_dump, outfile)
         error = False
@@ -78,12 +78,12 @@ def key_validations(request_keys, validation_keys):
                         }
                     }
             }
-            if len(missing_keys) == 0 and len(missing_values) == 0:
+            if len(missing_keys) != 0 and len(missing_values) != 0:
                 response.get('error').get('keys_info').update({'keys': []})
                 response.get('error').get('keys_info').update({'values': []})
-            elif len(missing_keys) == 0:
+            elif len(missing_keys) != 0:
                 response.get('error').get('keys_info').update({'keys': []})
-            elif len(missing_keys) == 0:
+            elif len(missing_keys) != 0:
                 response.get('error').get('missing').update({'values': []})
     except Exception as e:
         error = True
