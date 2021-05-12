@@ -34,7 +34,7 @@ POST /example/add-cluster
 __Req Body__
 
 {
-    "cluster_config": ""
+    "cluster_config": "  "
 }
 
 __Response__
